@@ -1,26 +1,42 @@
 #include "doctest.h"
 #include "NumberWithUnits.hpp"
-using namespace ariel;
-
 #include <string>
+using namespace ariel;
 using namespace std;
- // atleast 20
-TEST_CASE(" Good test! ") {
-  CHECK(NumberWithUnits a{2, "km"} = "2[km]");
-  CHECK(NumberWithUnits b{30, "km"} = "30[km]");
-  CHECK(NumberWithUnits c{-2, "km"} = "-2[km]");
-  CHECK(NumberWithUnits a{-1000, "km"} = "-1000[km]");
 
-  //Compare
-  CHECK(NumberWithUnits a{-1000, "km"} ==  NumberWithUnits b{-1000, "km"});
-  CHECK(NumberWithUnits a{-1000, "km"} !=  NumberWithUnits b{-2000, "km"});
+NumberWithUnits test1 {3, "km"};
+NumberWithUnits test2 {3000, "m"};
+NumberWithUnits test3 {300, "cm"};
+NumberWithUnits test4 {3, "m"};
+NumberWithUnits test5 {-300, "cm"};
+NumberWithUnits kyg {1, "kg"};
+NumberWithUnits kyg2 {1000, "g"};
+
+ // atleast 20
+TEST_CASE(" Errors in operator functions tests! ") {
+  CHECK_THROWS_AS(test1+kyg,exception);// cant submit diffrent types.
+  CHECK_THROWS_AS(test4+kyg,exception);// cant submit diffrent types.
+  CHECK_THROWS_AS(test2-kyg,exception);// cant subtract diffrent types.
+  CHECK_THROWS_AS(test1-kyg,exception);// cant subtract diffrent types.
+  CHECK_THROWS_AS(test1-=kyg,exception);
+  CHECK_THROWS_AS(test1-=kyg2,exception);
+  CHECK_THROWS_AS(test2+=kyg,exception);
+  CHECK_THROWS_AS(test2+=kyg2,exception);
+  
+  //Comparation - 5 tests
+  CHECK_THROWS_AS(if(test1==test2),exception);// compare km - m
+  CHECK_THROWS_AS(if(kyg2==kyg),exception);// compare kg - g
+  CHECK_THROWS_AS(if(test1==kyg),exception);// cant compare to diffrent types. 
+  CHECK_THROWS_AS(if(test3==kyg),exception);
+  CHECK_THROWS_AS(if(test3!=kyg2),exception);
+  CHECK_THROWS_AS(if(test3!=kyg),exception);
+  CHECK_THROWS_AS(if(test4==kyg2),exception);// cant compare to diffrent types.
+
+  //5 tests
+  CHECK_THROWS_AS(if(test4>kyg2),exception);// cant compare to diffrent types.
+  CHECK_THROWS_AS(if(test4<kyg2),exception);// cant compare to diffrent types.
+  CHECK_THROWS_AS(if(test4>=kyg2),exception);// cant compare to diffrent types.
+  CHECK_THROWS_AS(if(test4<=kyg2),exception);// cant compare to diffrent types.
+  CHECK_THROWS_AS(if(kyg!=kyg2),exception);// cant compare to diffrent types.
     
-}
-    TEST_CASE(" Bad test! ")
-{
-  //CHECK(NumberWithUnits w{x, "km"} == "x[km]");//Cant accept chars - wrong input
-    
-    
-   
-    /* Add more checks here */
 }
