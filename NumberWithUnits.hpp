@@ -1,48 +1,56 @@
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <stdexcept>
+#include <string>
+#include <climits>
+#include <unordered_map>
+#include <bits/stdc++.h>
+#include <utility>
 using namespace std;
-namespace ariel {
-      static void read_units(std::ifstream &);
-    
+
+namespace ariel{
     class NumberWithUnits{
-        double parameter=0;
-        string type="";
+        double parameter;
+        string type;
+            
 
         public:
-        void setParameter(double s) {
-            this->parameter = s;
-        }
-        // Getter
-        double getParameter() {
-            return this->parameter;
-        }
-        string gettype(){
-            return this->type;
-        }
-        void settype(string s) {
-            this->type = s;
-        }
-        // Functions: 
-      
-        ostream& operator<<(ostream& os);
-        // Math operator
-        
-        NumberWithUnits operator+(const NumberWithUnits& other) const;
-        NumberWithUnits operator-(const NumberWithUnits& other) const;
+             // Constructors:
+            NumberWithUnits(double num , string s):parameter(num),type(s){
+                //cout<< parameter << " [" << type << "] "<<endl;
+            };
+            ~NumberWithUnits(){};
+            // Functions: 
+            static void read_units(ifstream& file);
+            //Math Operator
+            NumberWithUnits operator-();//unary
+            NumberWithUnits& operator+(){return *this;};//unary
+            friend NumberWithUnits operator+(NumberWithUnits& a,NumberWithUnits& b);
+            friend NumberWithUnits operator-(NumberWithUnits& a,NumberWithUnits& b);
 
+            
+            NumberWithUnits& operator+=(const NumberWithUnits& b);
+            NumberWithUnits& operator-=(NumberWithUnits& b);
+            //multi - function 
+            friend NumberWithUnits& operator*(NumberWithUnits& a, double x);    //like i watched in Kern Kalif videos
+            friend NumberWithUnits& operator*(double x, NumberWithUnits& a);
+            //Comparation functions -(bool functions)-
+            friend bool operator>(NumberWithUnits& a, NumberWithUnits& b);
+            friend bool operator<(NumberWithUnits& a, NumberWithUnits& b);
+            friend bool operator>=(NumberWithUnits& a, NumberWithUnits& b);
+            friend bool operator<=(NumberWithUnits& a, NumberWithUnits& b);
+            friend bool operator!=(NumberWithUnits& a, NumberWithUnits& b);
+            friend bool operator==(const NumberWithUnits& a, const NumberWithUnits& b);
 
-        NumberWithUnits& operator+=(NumberWithUnits& a);
-        NumberWithUnits& operator-=(NumberWithUnits& a);
-        
-        friend bool operator ==(NumberWithUnits a,NumberWithUnits b);
+            NumberWithUnits& operator++();
+            NumberWithUnits operator++(int temp);
+            NumberWithUnits& operator--();
+            NumberWithUnits operator--(int temp);
 
-        NumberWithUnits& operator++(NumberWithUnits& a);
-        NumberWithUnits& operator--(NumberWithUnits& a);
-         // Constructors:
-        NumberWithUnits(double num , string s):parameter(num),type(s){
-            cout<< getParameter() << " [" << gettype() << "] "<<endl;
-        }
-        ~NumberWithUnits(){};
+            friend ostream& operator<<(ostream& output, const NumberWithUnits& other);
+
+            friend void operator>>(istringstream& input, NumberWithUnits& a);
+
     };
-
 }
