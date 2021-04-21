@@ -2,121 +2,86 @@
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
-#include <string>
-#include <climits>
-#include <unordered_map>
-#include <bits/stdc++.h>
-#include <utility>
 #include "NumberWithUnits.hpp"
 using namespace std;
 
-namespace ariel {
-    void NumberWithUnits::read_units(ifstream& file) {
-    }
+namespace ariel{
+void NumberWithUnits::read_units(ifstream& file){
+}
 
-    ostream& operator<<(ostream& output, const NumberWithUnits& other) {
-        return output;// should print output << other.parameter << " [" << other.type << "] " << endl;
-    }
-    void operator>>(istringstream& input, NumberWithUnits& a) {
+ostream& operator<<(ostream& output, const NumberWithUnits& other){
+    return output;// should print output << other.parameter << " [" << other.type << "] " << endl;
+}
+void operator>>(istringstream&input, NumberWithUnits& a){
 
-    }
+}
 
-    NumberWithUnits operator+(NumberWithUnits& a, NumberWithUnits& b) {
-        return NumberWithUnits{ 0, "km" };
-    }
+NumberWithUnits operator+(NumberWithUnits& a, NumberWithUnits& b){
+   return NumberWithUnits {0, "km"};
+}
 
-    NumberWithUnits& NumberWithUnits::operator+=(const NumberWithUnits& b) {
-        return *this;
-    }
+NumberWithUnits& NumberWithUnits::operator+=(const NumberWithUnits& b){
+    return *this;
+}
 
-    NumberWithUnits operator-(NumberWithUnits& a, NumberWithUnits& b) {
-        return NumberWithUnits{ 0, "km" };
-    }
+NumberWithUnits operator-(NumberWithUnits& a, NumberWithUnits& b){
+    return NumberWithUnits {0, "km"};
+}
 
-    NumberWithUnits& NumberWithUnits::operator-=(NumberWithUnits& b) {
-        return b;
-    }
+NumberWithUnits& NumberWithUnits::operator-=(NumberWithUnits& b){
+    return b;
+}
 
-    NumberWithUnits NumberWithUnits:: operator-() {
-        return NumberWithUnits{ 0, "km" };
-    }
+NumberWithUnits NumberWithUnits:: operator-(){
+    return NumberWithUnits {0, "km"};
+}
 
-    NumberWithUnits& operator*(NumberWithUnits& a, double x) {
-        return x * a;
-    }
+NumberWithUnits& operator*(NumberWithUnits& a, double x){
+    return x*a;
+}
 
-    NumberWithUnits& operator*(double x, NumberWithUnits& a) {
-        return a * x;
-    }
+NumberWithUnits& operator*(double x, NumberWithUnits& a){
+    return a*x;
+}
 
-    bool operator==(const NumberWithUnits& a, const NumberWithUnits& b) {
-        if (a.parameter == b.parameter && a.type == b.type) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+bool operator==(const NumberWithUnits& a, const NumberWithUnits& b){
+     return true;
+}
 
-    bool operator!=(NumberWithUnits& a, NumberWithUnits& b) {
-        if (a.parameter != b.parameter || a.type != b.type) {//if diffrent in type or paramter.
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+bool operator!=(NumberWithUnits& a, NumberWithUnits& b){
+     return true;
+}
 
-    bool operator<(NumberWithUnits& a, NumberWithUnits& b) {
-        if (a.parameter < b.parameter) {//if a.parameter<b.parameter.
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    bool operator>(NumberWithUnits& a, NumberWithUnits& b) {
-        if (a.parameter > b.parameter) {//if a.parameter<b.parameter.
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    bool operator<=(NumberWithUnits& a, NumberWithUnits& b) {
-        if (a.parameter <= b.parameter) {//if a.parameter<=b.parameter.
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    bool operator>=(NumberWithUnits& a, NumberWithUnits& b) {
-        if (a.parameter >= b.parameter) {//if a.parameter>=b.parameter.
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+bool operator<(NumberWithUnits& a, NumberWithUnits& b){
+    return true;
+}
+bool operator>(NumberWithUnits& a, NumberWithUnits& b){
+    return true;
+}
+bool operator<=(NumberWithUnits& a, NumberWithUnits& b){
+    return true;
+}
+bool operator>=(NumberWithUnits& a, NumberWithUnits& b){
+    return true;
+}
 
-    // Postfix operator
-    NumberWithUnits& NumberWithUnits::operator++() {
-        return *this;
-    }
-    NumberWithUnits& NumberWithUnits::operator--() {
-        return *this;
-    }
+// Postfix operator
+NumberWithUnits& NumberWithUnits::operator++(){
+    return *this;
+}
+NumberWithUnits& NumberWithUnits::operator--(){
+    return *this;
+}
 
-    // Prefix operator
-    NumberWithUnits NumberWithUnits::operator++(int temp) {
-        NumberWithUnits a{ 0, "km" };
-        return a;
-    }
-    NumberWithUnits NumberWithUnits::operator--(int temp) {
-        NumberWithUnits a{ 0, "km" };
-        return a;
-    }
+// Prefix operator
+NumberWithUnits NumberWithUnits::operator++(int temp){
+    NumberWithUnits a {0, "km"};
+         return a;
+}          
+NumberWithUnits NumberWithUnits::operator--(int temp){
+    NumberWithUnits a {0, "km"};
+         return a;
+}
 
 
 }
