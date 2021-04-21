@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
+#include <string.h>
 using namespace std;
 
 namespace ariel{
