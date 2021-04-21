@@ -7,10 +7,11 @@ using namespace std;
 
 namespace ariel{
 void NumberWithUnits::read_units(ifstream& file){
+        ifstream units_file{"units.txt"};
 }
 
 ostream& operator<<(ostream& output, const NumberWithUnits& other){
-    return output;// should print output << other.parameter << " [" << other.type << "] " << endl;
+    return output << other.parameter << " [" << other.type << "] " << endl;
 }
 void operator>>(istringstream&input, NumberWithUnits& a){
 
