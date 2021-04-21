@@ -38,11 +38,14 @@ NumberWithUnits NumberWithUnits:: operator-(){
 }
 
 NumberWithUnits& operator*(NumberWithUnits& a, double x){
-    return x*a;
+     a.parameter*= x;
+    return a;
 }
 
 NumberWithUnits& operator*(double x, NumberWithUnits& a){
-    return a*x;
+    a.parameter*= x;
+
+    return a;
 }
 
 bool operator==(const NumberWithUnits& a, const NumberWithUnits& b){
